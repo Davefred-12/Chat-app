@@ -7,22 +7,33 @@ import Home from "../pages/Home";
 import MessagePage from "../components/MessagePage";
 import AuthLayouts from "../layout";
 import Forgotpassword from "../pages/Forgotpassword";
+import ProtectedRoute from "./ProtectedRoute"; // <- ✅ Import it
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     children: [
-      // This is the homepage
+      // ✅ Protect Home route
       {
         index: true,
-        element: <Home />,
+        element: (
+          <ProtectedRoute>
+            <Home />
+          </ProtectedRoute>
+        ),
       },
-      // This is the dynamic message route
+      // ✅ Protect Message route
       {
         path: ":userId",
-        element: <MessagePage />,
+        element: (
+          <ProtectedRoute>
+            <MessagePage />
+          </ProtectedRoute>
+        ),
       },
+
+      // Public Auth routes
       {
         path: "register",
         element: (
