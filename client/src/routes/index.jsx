@@ -13,6 +13,16 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     children: [
+      // This is the homepage
+      {
+        index: true,
+        element: <Home />,
+      },
+      // This is the dynamic message route
+      {
+        path: ":userId",
+        element: <MessagePage />,
+      },
       {
         path: "register",
         element: (
@@ -44,17 +54,6 @@ const router = createBrowserRouter([
             <Forgotpassword />
           </AuthLayouts>
         ),
-      },
-      {
-        path: "",
-        element: <Home />,
-        index: true,
-        children: [
-          {
-            path: ":userId",
-            element: <MessagePage />,
-          },
-        ],
       },
     ],
   },
