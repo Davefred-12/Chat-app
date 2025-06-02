@@ -7,12 +7,24 @@ const cookieParser = require("cookie-parser");
 const { app, server } = require("./socket/index.js");
 
 // const app = express();
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://chat-app-front-sbk6.onrender.com"
+];
+
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
   })
 );
+
 app.use(express.json());
 app.use(cookieParser());
 const PORT = process.env.PORT || 8000;
