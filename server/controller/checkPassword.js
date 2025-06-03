@@ -33,8 +33,10 @@ async function checkPassword(req, res) {
     });
 
     const cookieOptions = {
-      httpOnly: true, 
+      httpOnly: true,
       secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      maxAge: 24 * 60 * 60 * 1000,
     };
 
     return res
@@ -42,7 +44,7 @@ async function checkPassword(req, res) {
       .cookie("token", token, cookieOptions)
       .json({
         message: "Login Successful",
-        token: token,
+        token: token, // optional, can be removed if you want
         success: true,
       });
   } catch (error) {

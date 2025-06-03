@@ -57,10 +57,10 @@ const CheckPasswordPage = () => {
       toast.success(response.data.message);
 
       if (response.data.success) {
-        dispatch(setToken(response?.data?.token));
-        sessionStorage.setItem("token", response?.data?.token);
+        dispatch(setToken(response.data.token));
 
         setData({ password: "" });
+
         navigate("/");
       }
     } catch (error) {
