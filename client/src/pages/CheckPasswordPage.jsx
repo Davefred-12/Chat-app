@@ -33,13 +33,6 @@ const CheckPasswordPage = () => {
       };
     });
   };
-  useEffect(() => {
-  const token = sessionStorage.getItem("token");
-  if (token) {
-    navigate("/");
-  }
-}, []);
-
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);

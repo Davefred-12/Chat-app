@@ -23,14 +23,14 @@ export const userSlice = createSlice({
     setToken: (state, action) => {
       state.token = action.payload;
     },
-    // eslint-disable-next-line no-unused-vars
-    logout: (state, action) => {
+    logout: (state) => {
       state._id = "";
       state.name = "";
       state.email = "";
       state.profile_pic = "";
       state.token = "";
       state.socketConnection = null;
+      sessionStorage.removeItem("token");
     },
     setOnlineUser: (state, action) => {
       state.onlineUser = action.payload;
